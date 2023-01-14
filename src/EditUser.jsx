@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const EditUser = (props) => {
-  const [Usuarios, SetUsuarios] = useState(props.currentUser)
+  const [Usuarios, SetUsuarios] = useState(props.currentUser);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
 
-    SetUsuarios({ ...Usuarios, [name]: value })
-  }
+    SetUsuarios({ ...Usuarios, [name]: value });
+  };
 
   return (
     <form
       onSubmit={(event) => {
-        event.preventDefault()
+        event.preventDefault();
 
-        props.updateUser(Usuarios.id, Usuarios)
+        props.updateUser(Usuarios.id, Usuarios);
       }}
     >
       <label>Estado</label>
@@ -48,15 +48,20 @@ const EditUser = (props) => {
         value={Usuarios.Tipo}
         onChange={handleInputChange}
       />
+
+      <div className="Actions">
       <button>Actualizar</button>
       <button
         onClick={() => props.setEditing(false)}
         className="button muted-button"
       >
-        Cancel
+        Cancelar
       </button>
+
+      </div>
+      
     </form>
-  )
-}
+  );
+};
 
 export default EditUser;

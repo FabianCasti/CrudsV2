@@ -1,0 +1,14 @@
+label {
+  font-weight: 600;
+  max-width: 100%;
+  display: block;  
+}
+
+.UserForm {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 45%;
+}
+

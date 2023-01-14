@@ -1,8 +1,17 @@
 import { useState } from "react";
 
+
 const RegisterForm = (props) => {
-  const initialFormState = { id: "", Estado: "", Usuario: "", Email: "",
-  Tipo: "" };
+
+
+
+  const initialFormState = {
+    id: "",
+    Estado: "",
+    Usuario: "",
+    Email: "",
+    Tipo: "",
+  };
   const [Usuarios, SetUsuarios] = useState(initialFormState);
 
   const handleInputChange = (event) => {
@@ -12,8 +21,8 @@ const RegisterForm = (props) => {
   };
 
   const onSubmit = (event) => {
-    props.addUser (Usuarios);
-    SetUsuarios(initialFormState)
+    props.addUser(Usuarios);
+    SetUsuarios(initialFormState);
     event.preventDefault();
   };
 
@@ -25,6 +34,7 @@ const RegisterForm = (props) => {
         name="Estado"
         value={Usuarios.Estado}
         onChange={handleInputChange}
+        
       />
 
       <label>Usuario</label>
@@ -50,8 +60,9 @@ const RegisterForm = (props) => {
         value={Usuarios.Tipo}
         onChange={handleInputChange}
       />
-
-      <button type="submit">Agregar</button>
+      <div className="Action">
+        <button type="submit">Agregar</button>
+      </div>
     </form>
   );
 };

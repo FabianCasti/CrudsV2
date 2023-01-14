@@ -1,3 +1,7 @@
+import "./Style/Table.css";
+import "./Style/Register.css";
+import "./Style/Edit.css";
+import "./Style/App.css"
 import Table from "./Table";
 import { useState } from "react";
 import RegisterForm from "./RegisterForm";
@@ -21,8 +25,9 @@ function App() {
     setCurrentUser({
       id: Usuario.id,
       Estado: Usuario.Estado,
-      Usuario: Usuario.Usuarios,
+      Usuario: Usuario.Usuario,
       Email: Usuario.Email,
+      Tipo: Usuario.Tipo,
     });
   };
 
@@ -45,13 +50,12 @@ function App() {
   }
 
   return (
-    <div>
-      <Table Usuarios={Usuarios} editRow={editRow} DeleteUser={DeleteUser} />
+    <div className="Container">
       
-      <div className="flex-large">
+      <div className="UserForm">
         {editing ? (
           <div>
-            <h2>Edit user</h2>
+            <h2>Editar usuario</h2>
             <EditUser
               setEditing={setEditing}
               currentUser={currentUser}
@@ -60,11 +64,13 @@ function App() {
           </div>
         ) : (
           <div>
-            <h2>Add user</h2>
+            <h2>Agregar usuario</h2>
             <RegisterForm addUser={addUser} />
           </div>
         )}
       </div>
+      <Table Usuarios={Usuarios} editRow={editRow} DeleteUser={DeleteUser} />
+
     </div>
   );
 }

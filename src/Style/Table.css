@@ -1,0 +1,36 @@
+.ContainerTable {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 10%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead th {
+  border-bottom: 2px solid #dedede;
+}
+
+td {
+  border-bottom: 1px solid #dedede;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem;
+}
+
+table .Colum-Default {
+  width: 15%;
+}
+table .Colum-Usuario {
+  width: 20%;
+}
+table .Colum-Email {
+  width: 20%;
+}
