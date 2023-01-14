@@ -1,10 +1,6 @@
 import { useState } from "react";
 
-
 const RegisterForm = (props) => {
-
-
-
   const initialFormState = {
     id: "",
     Estado: "",
@@ -34,7 +30,6 @@ const RegisterForm = (props) => {
         name="Estado"
         value={Usuarios.Estado}
         onChange={handleInputChange}
-        
       />
 
       <label>Usuario</label>

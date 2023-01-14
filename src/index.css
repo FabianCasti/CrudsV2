@@ -9,6 +9,13 @@ html {
   font-size: 1rem;
 }
 
+body {
+  background-image: url(https://www.freepik.es/fotos-premium/fondo-tecnologia-blanco-gris-abstracto-fondo-3d-rejilla-tecnologia-cibernetica-red-tecnologica-estructura-metalica-futurista-inteligencia-artificial-fondo-seguridad-cibernetica-graficos-movimiento_30321136.htm);
+   background-repeat:no-repeat ;
+   background-attachment: fixed;
+   background-size: cover;
+  
+}
 
 
 

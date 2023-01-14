@@ -40,7 +40,7 @@ function Table(Props) {
                     }}
                     className="buttonDelete"
                   >
-                    Delete
+                    Borrar
                   </button>
                 </td>
               </tr>
