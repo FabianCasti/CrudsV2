@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const EditUser = (props) => {
   const [Usuarios, SetUsuarios] = useState(props.currentUser);
 
@@ -50,10 +51,10 @@ const EditUser = (props) => {
       />
 
       <div className="Actions">
-      <button>Actualizar</button>
+      <button className="ButtonActualizar">Actualizar</button>
       <button
         onClick={() => props.setEditing(false)} 
-        className="button muted-button"        
+        className="buttonCancel"        
       >
         Cancelar
       </button>

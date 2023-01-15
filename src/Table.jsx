@@ -1,4 +1,17 @@
+import { useState } from 'react';
+import { Trash, Pencil } from 'react-bootstrap-icons';
+
+
 function Table(Props) {
+  const [check,setCheck] = useState(true);
+
+  const handleChange=(data)=>{
+
+    console.loge(data);
+
+  }
+  
+  
   return (
 
     <div className="ContainerTable">
@@ -8,6 +21,7 @@ function Table(Props) {
       <table>
         <thead>
           <tr>
+            <th> <input className='' type="checkbox" value={check} onChange={()=>handleChange("check")} /> </th>
             <th className="Colum-Default">Id</th>
             <th className="Colum-Default">Estado</th>
             <th className="Colum-Usuario">Usuario</th>
@@ -20,6 +34,7 @@ function Table(Props) {
           {Props.Usuarios.map((Usuario) => {
             return (
               <tr key={Usuario.id}>
+                <td><input className='' type="checkbox" value={check} onChange={()=>handleChange("check")} /></td>
                 <td className="Colum-Default">{Usuario.id}</td>
                 <td className="Colum-Default">{Usuario.Estado}</td>
                 <td className="Colum-Usuario">{Usuario.Usuario}</td>
@@ -32,7 +47,7 @@ function Table(Props) {
                     }}
                     className="buttonEdit"
                   >
-                    Edit
+                   <Pencil className="IconEdit" /> 
                   </button>
                   <button
                     onClick={() => {
@@ -40,7 +55,7 @@ function Table(Props) {
                     }}
                     className="buttonDelete"
                   >
-                    Borrar
+                    <Trash className="IconDelete" />
                   </button>
                 </td>
               </tr>

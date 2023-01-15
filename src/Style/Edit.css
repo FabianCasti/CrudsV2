@@ -2,9 +2,9 @@ label {
   font-weight: 600;
   max-width: 100%;
   display: block;
-  margin-left: 25px;
+  
 }
-.CuadroUserform h2{
+.CuadroUserform h2 {
   text-align: center;
 }
 input {
@@ -15,20 +15,35 @@ input {
 .UserForm {
   position: relative;
   float: center;
-  box-sizing: border-box;  
+  box-sizing: border-box;
   width: 100%;
 }
 
-.CuadroUserform{
+.CuadroUserform {
   border: 2px solid;
-  background-color:linen;
+  background-color: linen;
   border-radius: 4px;
   width: 15%;
   margin: 0px 40%;
-    
 }
 
 .Actions {
   text-align: center;
   margin-bottom: 10px;
+}
+
+.buttonEdit {
+  background-color: transparent;
+  border: none;
+  margin: 0 0 0 10px;
+  cursor: pointer;
+}
+
+.ButtonActualizar {
+  color: white;
+  margin: 5px;
+}
+.buttonCancel {
+  color: white;
+  margin: 5px;
 }

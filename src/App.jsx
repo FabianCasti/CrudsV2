@@ -6,6 +6,7 @@ import { useState } from "react";
 import RegisterForm from "./RegisterForm";
 import EditUser from "./EditUser";
 
+
 function App() {
   const [Pag, setPag] = useState(1);
   const [UsuariosPag, setUsuariosPag] = useState([]);
@@ -33,7 +34,7 @@ function App() {
   };
 
   const DeleteUser = (id) => {
-    const Duser  = Usuarios.filter((Usuario) => Usuario.id !== id);
+    const Duser = Usuarios.filter((Usuario) => Usuario.id !== id);
     SetUsuarios(Duser);
     GeneratePag(Duser, Pag);
     console.log(id);
@@ -101,10 +102,34 @@ function App() {
       </div>
       <Table Usuarios={UsuariosPag} editRow={editRow} DeleteUser={DeleteUser} />
 
-      <div className="ButtonsTable">
-        <button onClick={PrevPag}>Previous</button>
-        <label>{Pag}</label>
-        <button onClick={Nextpag}>Next</button>
+      <div className="ContainerOverview">
+        <div>
+          <div className="ContBEusers">
+            <button
+              className="ButtonEliminarUsers"
+              onClick={() => {
+                DeleteUser(Usuarios.id);
+              }}
+            >
+              Eliminar{" "}
+            </button>
+          </div>
+        </div>
+
+        <div className="ContNextpag">
+          <button className="ButtonNextPag" onClick={Nextpag}>
+            <b>Siguiente</b>{" "}
+          </button>
+        </div>
+        <div className="ContLabelContPag">
+          <label className="LabelCountPag">{Pag}</label>
+        </div>
+
+        <div className="ContPrevpag">
+          <button className="ButtonPrevPag" onClick={PrevPag}>
+            Anterior{" "}
+          </button>
+        </div>
       </div>
     </div>
   );

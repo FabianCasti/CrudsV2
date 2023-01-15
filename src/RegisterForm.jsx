@@ -24,7 +24,7 @@ const RegisterForm = (props) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <label>Estado</label>
+      <label className="LabelRegisFormDefault">Estado</label>
       <input
         type="text"
         name="Estado"
@@ -32,7 +32,7 @@ const RegisterForm = (props) => {
         onChange={handleInputChange}
       />
 
-      <label>Usuario</label>
+      <label className="LabelRegisFormDefault">Usuario</label>
       <input
         type="text"
         name="Usuario"
@@ -40,7 +40,7 @@ const RegisterForm = (props) => {
         onChange={handleInputChange}
       />
 
-      <label>Email</label>
+      <label className="LabelRegisFormDefault">Email</label>
       <input
         type="text"
         name="Email"
@@ -48,7 +48,7 @@ const RegisterForm = (props) => {
         onChange={handleInputChange}
       />
 
-      <label>Tipo</label>
+      <label className="LabelRegisFormDefault">Tipo</label>
       <input
         type="text"
         name="Tipo"
