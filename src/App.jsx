@@ -38,11 +38,15 @@ function App() {
   };
 
   const updateUser = (id, updatedUser) => {
+    const Suser = Usuarios.map((Usuario) =>
+      Usuario.id === id ? updatedUser : Usuario
+    );
+
     setEditing(false);
 
-    SetUsuarios(
-      Usuarios.map((Usuario) => (Usuario.id === id ? updatedUser : Usuario))
-    );
+    SetUsuarios(Suser);
+
+    GeneratePag(Suser, Pag);
   };
 
   function addUser(Usuario) {
@@ -95,8 +99,9 @@ function App() {
       </div>
       <Table Usuarios={UsuariosPag} editRow={editRow} DeleteUser={DeleteUser} />
 
-      <div>
+      <div className="ButtonsTable">
         <button onClick={PrevPag}>Previous</button>
+        <label>{Pag}</label>
         <button onClick={Nextpag}>Next</button>
       </div>
     </div>

@@ -52,8 +52,8 @@ const EditUser = (props) => {
       <div className="Actions">
       <button>Actualizar</button>
       <button
-        onClick={() => props.setEditing(false)}
-        className="button muted-button"
+        onClick={() => props.setEditing(false)} 
+        className="button muted-button"        
       >
         Cancelar
       </button>

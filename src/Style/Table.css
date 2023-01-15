@@ -34,3 +34,11 @@ table .Colum-Usuario {
 table .Colum-Email {
   width: 20%;
 }
+
+.ButtonsTable {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+  padding: 0 10%;
+}
