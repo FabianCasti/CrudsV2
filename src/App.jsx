@@ -33,7 +33,9 @@ function App() {
   };
 
   const DeleteUser = (id) => {
-    SetUsuarios(Usuarios.filter((Usuario) => Usuario.id !== id));
+    const Duser  = Usuarios.filter((Usuario) => Usuario.id !== id);
+    SetUsuarios(Duser);
+    GeneratePag(Duser, Pag);
     console.log(id);
   };
 
