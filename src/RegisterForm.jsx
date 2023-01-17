@@ -23,40 +23,65 @@ const RegisterForm = (props) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <label className="LabelRegisFormDefault">Estado</label>
-      <input
-        type="text"
-        name="Estado"
-        value={Usuarios.Estado}
-        onChange={handleInputChange}
-      />
+    <form className="ContainerForm" onSubmit={onSubmit}>
+      <div className="Form-group">
+        <input
+          className="ForInput"
+          type="text"
+          name="Estado"
+          value={Usuarios.Estado}
+          onChange={handleInputChange}
+          placeholder=" "
+        />
+        <label className="LabelRegisFormDefault">Estado:</label>
+        <span className="Formline"></span>
+      </div>
 
-      <label className="LabelRegisFormDefault">Usuario</label>
-      <input
-        type="text"
-        name="Usuario"
-        value={Usuarios.Usuario}
-        onChange={handleInputChange}
-      />
+      <div className="Form-group">
+        <input
+          className="ForInput"
+          type="text"
+          name="Usuario"
+          value={Usuarios.Usuario}
+          onChange={handleInputChange}
+          placeholder=" "
+        />
+        <label className="LabelRegisFormDefault">Usuario:</label>
+        <span className="Formline"></span>
+      </div>
 
-      <label className="LabelRegisFormDefault">Email</label>
-      <input
-        type="text"
-        name="Email"
-        value={Usuarios.Email}
-        onChange={handleInputChange}
-      />
+      <div className="Form-group">
+        <input
+          className="ForInput"
+          type="text"
+          name="Email"
+          value={Usuarios.Email}
+          onChange={handleInputChange}
+          placeholder=" "
+        />
+        <label className="LabelRegisFormDefault">Email:</label>
+        <span className="Formline"></span>
+      </div>
 
-      <label className="LabelRegisFormDefault">Tipo</label>
-      <input
-        type="text"
-        name="Tipo"
-        value={Usuarios.Tipo}
-        onChange={handleInputChange}
-      />
+      <div className="Form-group">
+        <input
+          className="ForInput"
+          type="text"
+          name="Tipo"
+          value={Usuarios.Tipo}
+          onChange={handleInputChange}
+          placeholder=" "
+        />
+        <label className="LabelRegisFormDefault">Tipo:</label>
+        <span className="Formline"></span>
+      </div>
+
       <div className="Action">
-        <button type="submit">Agregar</button>
+        <button className="ButtonAgg" type="submit">Agregar</button>
+
+        <button onClick={() => props.CancelUser()} className="buttonCancel">
+          Cancelar
+        </button>
       </div>
     </form>
   );

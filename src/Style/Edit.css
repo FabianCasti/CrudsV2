@@ -1,17 +1,62 @@
-label {
-  font-weight: 600;
-  max-width: 100%;
-  display: block;
-  
+.ForInput:focus + .LabelRegisFormDefault,
+.ForInput:not(:placeholder-shown) + .LabelRegisFormDefault {
+  transform: translateY(-12px) scale(0.7);
+  transform-origin: left top;
+  color: #3866f2;
 }
-.CuadroUserform h2 {
-  text-align: center;
+.ForInput {
+  width: 80%;
+  background: none;
+  color: #786c6c;
+  font-size: 1rem;
+  padding: 0.6rem 0.3rem;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--color);
 }
-input {
-  margin-left: 25px;
-  width: 79%;
+.LabelRegisFormDefault {
+  color: var(--color);
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 40px;
+  transform: translateY(10px);
+  transition: transform 0.5s, color 0.3s;
 }
 
+.ContainerForm {
+  display: grid;
+  gap: 2rem;
+}
+
+.Form-group {
+  position: relative;
+  --color: #5757577e;
+}
+
+.Formline{
+  position: absolute;
+  bottom: 0;
+  left: 35px;
+  width: 82.5%;
+  height: 1px;
+  background-color: #0040ff;
+  transform: scale(0);
+  transform: left bottom;
+  transition: transform .6s;
+}
+
+.ForInput:focus,
+.ForInput:not(:placeholder-shown){
+  color: black;
+
+}
+
+.ForInput:focus ~ .Formline,
+.ForInput:not(:placeholder-shown) ~ .Formline{
+  transform: scale(1);
+
+}
 .UserForm {
   position: relative;
   float: center;
@@ -20,11 +65,19 @@ input {
 }
 
 .CuadroUserform {
-  border: 2px solid;
-  background-color: linen;
-  border-radius: 4px;
-  width: 15%;
-  margin: 0px 40%;
+  background-color: white;
+  margin: auto;
+  width: 98%;
+  max-width: 400px;
+  padding: 3rem 0.5rem;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px -2px rgb(0 0 0/50%);
+  text-align: center;
+}
+
+.CuadroUserform h2 {
+  font-size: 2rem;
+  margin: 0;
 }
 
 .Actions {
@@ -32,18 +85,33 @@ input {
   margin-bottom: 10px;
 }
 
-.buttonEdit {
-  background-color: transparent;
+.ButtonAgg {
+  background-color: #0040ff;
   border: none;
-  margin: 0 0 0 10px;
+  color: #fff;
   cursor: pointer;
+  height: 40px;
+  width: 100px;
+  border-radius: 3px;
 }
-
 .ButtonActualizar {
   color: white;
   margin: 5px;
+  background-color: #0040ff;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 40px;
+  width: 100px;
+  border-radius: 3px;
 }
 .buttonCancel {
-  color: white;
-  margin: 5px;
+  background-color: #0040ff;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin: 0 20px;
+  height: 40px;
+  width: 100px;
+  border-radius: 3px;
 }

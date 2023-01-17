@@ -1,17 +1,17 @@
 import "./Style/Table.css";
-import "./Style/Register.css";
 import "./Style/Edit.css";
 import Table from "./Table";
 import { useState } from "react";
 import RegisterForm from "./RegisterForm";
 import EditUser from "./EditUser";
 
-
 function App() {
   const [Pag, setPag] = useState(1);
   const [UsuariosPag, setUsuariosPag] = useState([]);
   const [Usuarios, SetUsuarios] = useState([]);
   const [editing, setEditing] = useState(false);
+  const [showTable, setshowTable] = useState(true);
+
   const initialFormState = {
     id: "",
     Estado: "",
@@ -23,6 +23,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(initialFormState);
   const editRow = (Usuario) => {
     setEditing(true);
+    setshowTable(false);
 
     setCurrentUser({
       id: Usuario.id,
@@ -50,6 +51,8 @@ function App() {
     SetUsuarios(Suser);
 
     GeneratePag(Suser, Pag);
+
+    setshowTable(true);
   };
 
   function addUser(Usuario) {
@@ -57,6 +60,7 @@ function App() {
     const Usuariotemporal = [...Usuarios, Usuario];
     SetUsuarios(Usuariotemporal);
     GeneratePag(Usuariotemporal, Pag);
+    setshowTable(true);
   }
 
   function GeneratePag(Usuarios, Pag) {
@@ -79,57 +83,78 @@ function App() {
     GeneratePag(Usuarios, Prepag);
   }
 
+  function newUser() {
+    setshowTable(false);
+    setEditing(false);
+  }
+
+  function CancelUser() {
+    setEditing(false);
+    setshowTable(true);
+  }
+
   return (
     <div className="Container">
-      <div className="UserForm">
-        <div className="CuadroUserform">
-          {editing ? (
-            <div>
-              <h2>Editar usuario</h2>
-              <EditUser
-                setEditing={setEditing}
-                currentUser={currentUser}
-                updateUser={updateUser}
-              />
-            </div>
-          ) : (
-            <div>
-              <h2>Agregar usuario</h2>
-              <RegisterForm addUser={addUser} />
-            </div>
-          )}
-        </div>
-      </div>
-      <Table Usuarios={UsuariosPag} editRow={editRow} DeleteUser={DeleteUser} />
+      <div className="Table">
+        {showTable ? (
+          <div className="UserTable">
+            <Table
+              Usuarios={UsuariosPag}
+              editRow={editRow}
+              DeleteUser={DeleteUser}
+              newUser={newUser}
+            />
+            <div className="ContainerTable2">
+              <div>
+                <div className="ContBEusers">
+                  <button
+                    className="ButtonEliminarUsers"
+                    onClick={() => {
+                      DeleteUser(Usuarios.id);
+                    }}
+                  >
+                    Eliminar{" "}
+                  </button>
+                </div>
+              </div>
 
-      <div className="ContainerOverview">
-        <div>
-          <div className="ContBEusers">
-            <button
-              className="ButtonEliminarUsers"
-              onClick={() => {
-                DeleteUser(Usuarios.id);
-              }}
-            >
-              Eliminar{" "}
-            </button>
+              <div className="ContNextpag">
+                <button className="ButtonNextPag" onClick={Nextpag}>
+                  <b>Siguiente</b>{" "}
+                </button>
+              </div>
+              <div className="ContLabelContPag">
+                <label className="LabelCountPag">{Pag}</label>
+              </div>
+
+              <div className="ContPrevpag">
+                <button className="ButtonPrevPag" onClick={PrevPag}>
+                  Anterior{" "}
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div className="ContNextpag">
-          <button className="ButtonNextPag" onClick={Nextpag}>
-            <b>Siguiente</b>{" "}
-          </button>
-        </div>
-        <div className="ContLabelContPag">
-          <label className="LabelCountPag">{Pag}</label>
-        </div>
-
-        <div className="ContPrevpag">
-          <button className="ButtonPrevPag" onClick={PrevPag}>
-            Anterior{" "}
-          </button>
-        </div>
+        ) : (
+          <div className="UserForm">
+            <div className="CuadroUserform">
+              {editing ? (
+                <div>
+                  <h2>Editar usuario</h2>
+                  <EditUser
+                    CancelUser={CancelUser}
+                    currentUser={currentUser}
+                    updateUser={updateUser}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <h2>Agregar usuario</h2>
+                  <RegisterForm addUser={addUser} CancelUser={CancelUser} />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,9 +1,69 @@
+.Container {
+  width: 60%;
+  margin: 15% 20%;
+  position: relative;
+  float: left;
+}
+.UserTable{
+  width: 100%;
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+}
 .ContainerTable {
   position: relative;
   float: left;
   box-sizing: border-box;
   width: 100%;
-  padding: 0 10%;
+  padding: 0 5%;
+  background-color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  max-width: 1200px;
+  box-shadow: 5px 5px 10px -2px rgb(0 0 0 / 50%);
+}
+
+.ContainerTable2 {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 5%;
+  max-width: 1200px;
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 5px 5px 10px -2px rgb(0 0 0 / 50%);
+}
+
+.ContainerTitle {
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+  width: 100%;
+  margin: 40px 0px;
+}
+.ContainerTitle h4 {
+  margin: 0;
+  float: left;
+}
+.ButtonTitle {
+  position: relative;
+  float: right;
+  box-sizing: border-box;
+  background-color: #0040ff;
+  border: none;
+  cursor: pointer;
+  height: 35px;
+  color: #ffff;
+  size: 700;
+  border-radius: 4px;
+}
+
+.IconAgg {
+  position: relative;
+  float: left;
+  margin-right: 5px;
 }
 
 table {
@@ -43,31 +103,41 @@ table .Colum-Email {
   padding: 0 10%;
 }
 
-.ContainerOverview{
-position: relative;
-box-sizing: border-box;
-float: left;
-width: 100%;
-margin-top: 40px;
-padding: 0 10%;
+.ContainerOverview {
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+  width: 100%;
+  margin-top: 40px;
+  padding: 0 10%;
 }
 
-.ContBEusers{
-float: left;
+.ContBEusers {
+  float: left;
 }
 
-.ContPrevpag{
+.ContPrevpag {
+  margin-top: 50px;
   float: right;
 }
-.ContLabelContPag{
-  float: right;
-  
-}
-.ContNextpag{
+.ContLabelContPag {
+  margin-top: 50px;
   float: right;
 }
 
-.ButtonEliminarUsers{
+.ContNextpag {
+  margin-top: 50px;
+  float: right;
+}
+
+.buttonEdit {
+  background-color: transparent;
+  border: none;
+  margin: 0 0 0 10px;
+  cursor: pointer;
+}
+
+.ButtonEliminarUsers {
   background-color: transparent;
   border: 2px solid rgb(218, 218, 218);
   border-top-left-radius: 4px;
@@ -76,7 +146,8 @@ float: left;
   height: 35px;
   font-size: 600;
   color: grey;
-
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .ButtonPrevPag {
@@ -88,7 +159,6 @@ float: left;
   height: 35px;
   font-size: 600;
   color: grey;
-
 }
 
 .ButtonNextPag {
@@ -98,17 +168,17 @@ float: left;
   border-bottom-right-radius: 4px;
   cursor: pointer;
   height: 35px;
-  color: #4754a3;
+  color: #0040ff;
   size: 700;
 }
 .LabelCountPag {
-  background-color: #4754a3;
+  background-color: #0040ff;
   color: white;
-  width: 20px;
   text-align: center;
   width: 35px;
   height: 35px;
   line-height: 35px;
+  display: block;
 }
 
 .buttonDelete {
