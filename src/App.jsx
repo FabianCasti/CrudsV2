@@ -5,22 +5,22 @@ import { useState } from "react";
 import RegisterForm from "./RegisterForm";
 import EditUser from "./EditUser";
 
+const initialFormState = {
+  id: "",
+  Estado: "",
+  Usuario: "",
+  Email: "",
+  Tipo: "",
+};
+
 function App() {
-  const [Pag, setPag] = useState(1);
-  const [UsuariosPag, setUsuariosPag] = useState([]);
-  const [Usuarios, SetUsuarios] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);  
+  const [pag, setPag] = useState(1);
+  const [usuariosPag, setUsuariosPag] = useState([]);
   const [editing, setEditing] = useState(false);
   const [showTable, setshowTable] = useState(true);
-
-  const initialFormState = {
-    id: "",
-    Estado: "",
-    Usuario: "",
-    Email: "",
-    Tipo: "",
-  };
-
   const [currentUser, setCurrentUser] = useState(initialFormState);
+
   const editRow = (Usuario) => {
     setEditing(true);
     setshowTable(false);
@@ -28,59 +28,57 @@ function App() {
     setCurrentUser({
       id: Usuario.id,
       Estado: Usuario.Estado,
-      Usuario: Usuario.Usuario,
+      Usuario: Usuario.Usuario, 
       Email: Usuario.Email,
       Tipo: Usuario.Tipo,
     });
   };
 
   const DeleteUser = (id) => {
-    const Duser = Usuarios.filter((Usuario) => Usuario.id !== id);
-    SetUsuarios(Duser);
-    GeneratePag(Duser, Pag);
-    console.log(id);
+    const UsersResult = usuarios.filter((Usuario) => Usuario.id !== id);
+    setUsuarios(UsersResult);
+    generatePag(UsersResult, pag);
   };
 
   const updateUser = (id, updatedUser) => {
-    const Suser = Usuarios.map((Usuario) =>
+    const UsersResult = usuarios.map((Usuario) =>
       Usuario.id === id ? updatedUser : Usuario
     );
 
     setEditing(false);
 
-    SetUsuarios(Suser);
+    setUsuarios(UsersResult);
 
-    GeneratePag(Suser, Pag);
+    generatePag(UsersResult, pag);
 
     setshowTable(true);
   };
 
   function addUser(Usuario) {
-    Usuario.id = Usuarios.length + 1;
-    const Usuariotemporal = [...Usuarios, Usuario];
-    SetUsuarios(Usuariotemporal);
-    GeneratePag(Usuariotemporal, Pag);
+    Usuario.id = usuarios.length + 1;
+    const UsersResult = [...usuarios, Usuario];
+    setUsuarios(UsersResult);
+    generatePag(UsersResult, pag);
     setshowTable(true);
   }
 
-  function GeneratePag(Usuarios, Pag) {
+  function generatePag(Usuarios, Pag) {
     const PosicionInicial = (Pag - 1) * 5;
     const PosicionFinal = Pag * 5;
-    const Paginas = Usuarios.slice(PosicionInicial, PosicionFinal);
-    setUsuariosPag(Paginas);
-    console.log(Usuarios.length);
+    const usersPag = Usuarios.slice(PosicionInicial, PosicionFinal);
+    setUsuariosPag(usersPag);
   }
 
   function Nextpag() {
-    const Newpag = Pag + 1;
+    const Newpag = pag + 1;
     setPag(Newpag);
-    GeneratePag(Usuarios, Newpag);
+    generatePag(usuarios, Newpag);
   }
 
   function PrevPag() {
-    const Prepag = Pag - 1;
+    const Prepag = pag - 1;
     setPag(Prepag);
-    GeneratePag(Usuarios, Prepag);
+    generatePag(usuarios, Prepag);
   }
 
   function newUser() {
@@ -99,7 +97,7 @@ function App() {
         {showTable ? (
           <div className="UserTable">
             <Table
-              Usuarios={UsuariosPag}
+              Usuarios={usuariosPag}
               editRow={editRow}
               DeleteUser={DeleteUser}
               newUser={newUser}
@@ -110,7 +108,7 @@ function App() {
                   <button
                     className="ButtonEliminarUsers"
                     onClick={() => {
-                      DeleteUser(Usuarios.id);
+                      DeleteUser(usuarios.id);
                     }}
                   >
                     Eliminar{" "}
@@ -124,7 +122,7 @@ function App() {
                 </button>
               </div>
               <div className="ContLabelContPag">
-                <label className="LabelCountPag">{Pag}</label>
+                <label className="LabelCountPag">{pag}</label>
               </div>
 
               <div className="ContPrevpag">

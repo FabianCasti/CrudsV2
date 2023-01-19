@@ -1,4 +1,5 @@
 import { Trash, Pencil, PersonPlus } from "react-bootstrap-icons";
+import userpng from "./Img/user.png";
 
 function Table(Props) {
   return (
@@ -9,8 +10,9 @@ function Table(Props) {
           onClick={() => {
             Props.newUser();
           }}
-          className="ButtonTitle"        >
-          <PersonPlus className="IconAgg"/>
+          className="ButtonTitle"
+        >
+          <PersonPlus className="IconAgg" />
           Agregar
         </button>
       </div>
@@ -30,9 +32,11 @@ function Table(Props) {
           {Props.Usuarios.map((Usuario) => {
             return (
               <tr key={Usuario.id}>
+                
                 <td className="Colum-Default">{Usuario.id}</td>
                 <td className="Colum-Default">{Usuario.Estado}</td>
-                <td className="Colum-Usuario">{Usuario.Usuario}</td>
+                <td className="Colum-Usuario"> 
+                <img className="LogoUser" src={userpng} /> {Usuario.Usuario}</td>
                 <td className="Colum-Email">{Usuario.Email}</td>
                 <td className="Colum-Default">{Usuario.Tipo}</td>
                 <td className="Colum-Default">
@@ -57,7 +61,6 @@ function Table(Props) {
             );
           })}
         </tbody>
-        
       </table>
     </div>
   );

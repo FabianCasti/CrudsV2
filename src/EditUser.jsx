@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 const EditUser = (props) => {
-  const [Usuarios, SetUsuarios] = useState(props.currentUser);
+  const [Usuario, SetUsuario] = useState(props.currentUser);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    SetUsuarios({ ...Usuarios, [name]: value });
+    SetUsuario({ ...Usuario, [name]: value });
   };
 
   return (
@@ -14,7 +14,7 @@ const EditUser = (props) => {
       className="ContainerForm"
       onSubmit={(event) => {
         event.preventDefault();
-        props.updateUser(Usuarios.id, Usuarios);
+        props.updateUser(Usuario.id, Usuario);
       }}
     >
       <div className="Form-group">
@@ -22,7 +22,7 @@ const EditUser = (props) => {
           className="ForInput"
           type="text"
           name="Estado"
-          value={Usuarios.Estado}
+          value={Usuario.Estado}
           onChange={handleInputChange}
           placeholder=" "
         />
@@ -35,7 +35,7 @@ const EditUser = (props) => {
           className="ForInput"
           type="text"
           name="Usuario"
-          value={Usuarios.Usuario}
+          value={Usuario.Usuario}
           onChange={handleInputChange}
           placeholder=" "
         />
@@ -48,7 +48,7 @@ const EditUser = (props) => {
           className="ForInput"
           type="text"
           name="Email"
-          value={Usuarios.Email}
+          value={Usuario.Email}
           onChange={handleInputChange}
           placeholder=" "
         />
@@ -61,7 +61,7 @@ const EditUser = (props) => {
           className="ForInput"
           type="text"
           name="Tipo"
-          value={Usuarios.Tipo}
+          value={Usuario.Tipo}
           onChange={handleInputChange}
           placeholder=" "
         />

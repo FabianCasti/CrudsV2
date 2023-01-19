@@ -8,16 +8,16 @@ const RegisterForm = (props) => {
     Email: "",
     Tipo: "",
   };
-  const [Usuarios, SetUsuarios] = useState(initialFormState);
+  const [Usuario, SetUsuarios] = useState(initialFormState);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    SetUsuarios({ ...Usuarios, [name]: value });
+    SetUsuarios({ ...Usuario, [name]: value });
   };
 
   const onSubmit = (event) => {
-    props.addUser(Usuarios);
+    props.addUser(Usuario);
     SetUsuarios(initialFormState);
     event.preventDefault();
   };
@@ -29,7 +29,7 @@ const RegisterForm = (props) => {
           className="ForInput"
           type="text"
           name="Estado"
-          value={Usuarios.Estado}
+          value={Usuario.Estado}
           onChange={handleInputChange}
           placeholder=" "
         />
@@ -42,7 +42,7 @@ const RegisterForm = (props) => {
           className="ForInput"
           type="text"
           name="Usuario"
-          value={Usuarios.Usuario}
+          value={Usuario.Usuario}
           onChange={handleInputChange}
           placeholder=" "
         />
@@ -55,7 +55,7 @@ const RegisterForm = (props) => {
           className="ForInput"
           type="text"
           name="Email"
-          value={Usuarios.Email}
+          value={Usuario.Email}
           onChange={handleInputChange}
           placeholder=" "
         />
@@ -68,7 +68,7 @@ const RegisterForm = (props) => {
           className="ForInput"
           type="text"
           name="Tipo"
-          value={Usuarios.Tipo}
+          value={Usuario.Tipo}
           onChange={handleInputChange}
           placeholder=" "
         />
