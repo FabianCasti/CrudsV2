@@ -3,83 +3,94 @@ import { useState } from "react";
 const RegisterForm = (props) => {
   const initialFormState = {
     id: "",
-    Estado: "",
-    Usuario: "",
-    Email: "",
-    Tipo: "",
+    name: "",
+    phone: "",
+    email: "", 
+    debt: "",
+    
   };
-  const [Usuario, SetUsuarios] = useState(initialFormState);
+  const [customer, setCustomer] = useState(initialFormState);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    SetUsuarios({ ...Usuario, [name]: value });
+    setCustomer({ ...customer, [name]: value });
   };
 
   const onSubmit = (event) => {
-    props.addUser(Usuario);
-    SetUsuarios(initialFormState);
+    const endCustomer = {
+      ...customer,
+      debt: parseFloat(customer.debt),
+      balance: parseFloat(customer.debt),
+      date: new Date (),
+      payments:[]
+    };
+
+    props.addCustomer(endCustomer);
+    setCustomer(initialFormState);
     event.preventDefault();
   };
 
   return (
-    <form className="ContainerForm" onSubmit={onSubmit}>
-      <div className="Form-group">
+    <form className="container-form" onSubmit={onSubmit}>
+      <div className="form-group">
         <input
-          className="ForInput"
+          className="form-input"
           type="text"
-          name="Estado"
-          value={Usuario.Estado}
+          name="name"
+          value={customer.name}
           onChange={handleInputChange}
           placeholder=" "
         />
-        <label className="LabelRegisFormDefault">Estado:</label>
-        <span className="Formline"></span>
+        <label className="label-regis-form-default">Nombre del cliente:</label>
+        <span className="form-line"></span>
       </div>
 
-      <div className="Form-group">
+      <div className="form-group">
         <input
-          className="ForInput"
+          className="form-input"
           type="text"
-          name="Usuario"
-          value={Usuario.Usuario}
+          name="phone"
+          value={customer.phone}
           onChange={handleInputChange}
           placeholder=" "
         />
-        <label className="LabelRegisFormDefault">Usuario:</label>
-        <span className="Formline"></span>
+        <label className="label-regis-form-default">Telefono:</label>
+        <span className="form-line"></span>
       </div>
 
-      <div className="Form-group">
+      <div className="form-group">
         <input
-          className="ForInput"
+          className="form-input"
           type="text"
-          name="Email"
-          value={Usuario.Email}
+          name="email"
+          value={customer.email}
           onChange={handleInputChange}
           placeholder=" "
         />
-        <label className="LabelRegisFormDefault">Email:</label>
-        <span className="Formline"></span>
+        <label className="label-regis-form-default">Email:</label>
+        <span className="form-line"></span>
       </div>
 
-      <div className="Form-group">
+      <div className="form-group">
         <input
-          className="ForInput"
+          className="form-input"
           type="text"
-          name="Tipo"
-          value={Usuario.Tipo}
+          name="debt"
+          value={customer.debt}
           onChange={handleInputChange}
           placeholder=" "
         />
-        <label className="LabelRegisFormDefault">Tipo:</label>
-        <span className="Formline"></span>
+        <label className="label-regis-form-default">Valor de deuda:</label>
+        <span className="form-line"></span>
       </div>
 
       <div className="Action">
-        <button className="ButtonAgg" type="submit">Agregar</button>
+        <button className="button-add" type="submit">
+          Agregar
+        </button>
 
-        <button onClick={() => props.CancelUser()} className="buttonCancel">
+        <button onClick={() => props.CancelUser()} className="button-cancel">
           Cancelar
         </button>
       </div>

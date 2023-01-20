@@ -4,7 +4,6 @@ import Table from "./Table";
 import { useState } from "react";
 import RegisterForm from "./RegisterForm";
 import EditUser from "./EditUser";
-
 const initialFormState = {
   id: "",
   Estado: "",
@@ -14,7 +13,7 @@ const initialFormState = {
 };
 
 function App() {
-  const [usuarios, setUsuarios] = useState([]);  
+  const [usuarios, setUsuarios] = useState([]);
   const [pag, setPag] = useState(1);
   const [usuariosPag, setUsuariosPag] = useState([]);
   const [editing, setEditing] = useState(false);
@@ -26,11 +25,7 @@ function App() {
     setshowTable(false);
 
     setCurrentUser({
-      id: Usuario.id,
-      Estado: Usuario.Estado,
-      Usuario: Usuario.Usuario, 
-      Email: Usuario.Email,
-      Tipo: Usuario.Tipo,
+      ...Usuario,
     });
   };
 
@@ -39,22 +34,42 @@ function App() {
     setUsuarios(UsersResult);
     generatePag(UsersResult, pag);
   };
-
-  const updateUser = (id, updatedUser) => {
-    const UsersResult = usuarios.map((Usuario) =>
-      Usuario.id === id ? updatedUser : Usuario
-    );
-
-    setEditing(false);
-
-    setUsuarios(UsersResult);
-
-    generatePag(UsersResult, pag);
-
-    setshowTable(true);
+  
+  const formatedTimestamp = () => {
+    const d = new Date();
+    const date = d.toISOString().split("T")[0];
+    const time = d.toTimeString().split(" ")[0];
+    return `${date} ${time}`;
   };
 
-  function addUser(Usuario) {
+  const payCustomer = (id, pay) => {
+    const [customerPay] = usuarios.filter((Usuario) => Usuario.id === id);
+
+    if (customerPay) {
+      customerPay.balance = customerPay.balance - pay;
+      customerPay.payments.push({
+        id: "",
+        value: pay,
+        date: formatedTimestamp(),
+      });
+
+      const UsersResult = usuarios.map((Usuario) =>
+        Usuario.id === id ? customerPay : Usuario
+      );
+
+      console.log(UsersResult);
+
+      setEditing(false);
+
+      setUsuarios(UsersResult);
+
+      generatePag(UsersResult, pag);
+
+      setshowTable(true);
+    }
+  };
+
+  function addCustomer(Usuario) {
     Usuario.id = usuarios.length + 1;
     const UsersResult = [...usuarios, Usuario];
     setUsuarios(UsersResult);
@@ -92,21 +107,21 @@ function App() {
   }
 
   return (
-    <div className="Container">
-      <div className="Table">
+    <div className="container-app">
+      <div className="table">
         {showTable ? (
-          <div className="UserTable">
+          <div className="user-table">
             <Table
-              Usuarios={usuariosPag}
+              customers={usuariosPag}
               editRow={editRow}
               DeleteUser={DeleteUser}
               newUser={newUser}
             />
-            <div className="ContainerTable2">
+            <div className="container-table-2">
               <div>
-                <div className="ContBEusers">
+                <div className="cont-bu-de-users">
                   <button
-                    className="ButtonEliminarUsers"
+                    className="button-delete-users"
                     onClick={() => {
                       DeleteUser(usuarios.id);
                     }}
@@ -116,38 +131,41 @@ function App() {
                 </div>
               </div>
 
-              <div className="ContNextpag">
-                <button className="ButtonNextPag" onClick={Nextpag}>
+              <div className="cont-next-pag">
+                <button className="button-next-pag" onClick={Nextpag}>
                   <b>Siguiente</b>{" "}
                 </button>
               </div>
-              <div className="ContLabelContPag">
-                <label className="LabelCountPag">{pag}</label>
+              <div className="cont-label-cont-pag">
+                <label className="label-count-pag">{pag}</label>
               </div>
 
-              <div className="ContPrevpag">
-                <button className="ButtonPrevPag" onClick={PrevPag}>
+              <div className="cont-prev-pag">
+                <button className="button-prev-pag" onClick={PrevPag}>
                   Anterior{" "}
                 </button>
               </div>
             </div>
           </div>
         ) : (
-          <div className="UserForm">
-            <div className="CuadroUserform">
+          <div className="user-form">
+            <div className="cuadro-user-form">
               {editing ? (
                 <div>
-                  <h2>Editar usuario</h2>
+                  <h2>Pago del cliente</h2>
                   <EditUser
                     CancelUser={CancelUser}
                     currentUser={currentUser}
-                    updateUser={updateUser}
+                    payCustomer={payCustomer}
                   />
                 </div>
               ) : (
                 <div>
-                  <h2>Agregar usuario</h2>
-                  <RegisterForm addUser={addUser} CancelUser={CancelUser} />
+                  <h2>Agregar Cliente</h2>
+                  <RegisterForm
+                    addCustomer={addCustomer}
+                    CancelUser={CancelUser}
+                  />
                 </div>
               )}
             </div>

@@ -1,79 +1,84 @@
 import React, { useState } from "react";
+import swal from "sweetalert";
 
 const EditUser = (props) => {
-  const [Usuario, SetUsuario] = useState(props.currentUser);
+  const [customer] = useState(props.currentUser);
+  const [pay, setPay] = useState(0);
+  const handlePay = (event) => {
+    const payFloat = parseFloat(pay);
+    if (payFloat > customer.balance) {
+      swal("Valor a pagar es mayor al saldo actual");
+    } else {
+      props.payCustomer(customer.id, payFloat);
+    }
+    event.preventDefault();
+  };
+
+  const getpayment = (list) => {
+    let result = "";
+    list.map(
+      (item) =>
+        (result =
+          result + "Pago:" + "\r" + "$" + item.value + "\r" + item.date + "\n")
+    );
+    return result;
+  };
+  const mostrarAlerta = (event) => {
+    swal("Historial de pagos", getpayment(customer.payments));
+    event.preventDefault();
+  };
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-
-    SetUsuario({ ...Usuario, [name]: value });
+    const { value } = event.target;
+    setPay(value);
   };
 
   return (
-    <form
-      className="ContainerForm"
-      onSubmit={(event) => {
-        event.preventDefault();
-        props.updateUser(Usuario.id, Usuario);
-      }}
-    >
-      <div className="Form-group">
+    <form className="container-form">
+      <div>
+        <label> {customer.name}</label>
+      </div>
+
+      <div>
+        <label> {customer.phone}</label>
+      </div>
+      <div>
+        <label> {customer.email}</label>
+      </div>
+      <div>
+        <label> Saldo: ${customer.balance}</label>
+      </div>
+
+      <div className="form-group">
         <input
-          className="ForInput"
+          className="form-input"
           type="text"
-          name="Estado"
-          value={Usuario.Estado}
+          name="debt"
+          value={pay}
           onChange={handleInputChange}
           placeholder=" "
         />
-        <label className="LabelRegisFormDefault">Estado:</label>
-        <span className="Formline"></span>
+        <label className="label-regis-form-default">Valor a pagar:</label>
+        <span className="form-line"></span>
       </div>
 
-      <div className="Form-group">
-        <input
-          className="ForInput"
-          type="text"
-          name="Usuario"
-          value={Usuario.Usuario}
-          onChange={handleInputChange}
-          placeholder=" "
-        />
-        <label className="LabelRegisFormDefault">Usuario:</label>
-        <span className="Formline"></span>
-      </div>
+      <div className="actions">
+        <button className="button-pagar" onClick={handlePay}>
+          Pagar
+        </button>
 
-      <div className="Form-group">
-        <input
-          className="ForInput"
-          type="text"
-          name="Email"
-          value={Usuario.Email}
-          onChange={handleInputChange}
-          placeholder=" "
-        />
-        <label className="LabelRegisFormDefault">Email</label>
-        <span className="Formline"></span>
-      </div>
-
-      <div className="Form-group">
-        <input
-          className="ForInput"
-          type="text"
-          name="Tipo"
-          value={Usuario.Tipo}
-          onChange={handleInputChange}
-          placeholder=" "
-        />
-        <label className="LabelRegisFormDefault">Tipo</label>
-        <span className="Formline"></span>
-      </div>
-
-      <div className="Actions">
-        <button className="ButtonActualizar">Actualizar</button>
-        <button onClick={() => props.CancelUser()} className="buttonCancel">
+        <button onClick={() => props.CancelUser()} className="button-cancel">
           Cancelar
         </button>
+
+        <div>
+          <button
+            className="button-detailspay"
+            onClick={(event) => mostrarAlerta(event)}
+          >
+            Detalles de pagos
+          </button>
+        </div>
       </div>
     </form>
   );

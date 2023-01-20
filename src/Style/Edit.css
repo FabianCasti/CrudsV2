@@ -1,10 +1,10 @@
-.ForInput:focus + .LabelRegisFormDefault,
-.ForInput:not(:placeholder-shown) + .LabelRegisFormDefault {
+.form-input:focus + .label-regis-form-default,
+.form-input:not(:placeholder-shown) + .label-regis-form-default {
   transform: translateY(-12px) scale(0.7);
   transform-origin: left top;
   color: #3866f2;
 }
-.ForInput {
+.form-input {
   width: 80%;
   background: none;
   color: #786c6c;
@@ -14,7 +14,7 @@
   outline: none;
   border-bottom: 1px solid var(--color);
 }
-.LabelRegisFormDefault {
+.label-regis-form-default {
   color: var(--color);
   cursor: pointer;
   position: absolute;
@@ -24,17 +24,17 @@
   transition: transform 0.5s, color 0.3s;
 }
 
-.ContainerForm {
+.container-form {
   display: grid;
   gap: 2rem;
 }
 
-.Form-group {
+.form-group {
   position: relative;
   --color: #5757577e;
 }
 
-.Formline{
+.form-line{
   position: absolute;
   bottom: 0;
   left: 35px;
@@ -46,25 +46,25 @@
   transition: transform .6s;
 }
 
-.ForInput:focus,
-.ForInput:not(:placeholder-shown){
+.form-input:focus,
+.form-input:not(:placeholder-shown){
   color: black;
 
 }
 
-.ForInput:focus ~ .Formline,
-.ForInput:not(:placeholder-shown) ~ .Formline{
+.form-input:focus ~ .Formline,
+.form-input:not(:placeholder-shown) ~ .Formline{
   transform: scale(1);
 
 }
-.UserForm {
+.user-form {
   position: relative;
   float: center;
   box-sizing: border-box;
   width: 100%;
 }
 
-.CuadroUserform {
+.cuadro-user-form {
   background-color: white;
   margin: auto;
   width: 98%;
@@ -80,12 +80,12 @@
   margin: 0;
 }
 
-.Actions {
+.actions {
   text-align: center;
   margin-bottom: 10px;
 }
 
-.ButtonAgg {
+.button-add {
   background-color: #0040ff;
   border: none;
   color: #fff;
@@ -94,7 +94,7 @@
   width: 100px;
   border-radius: 3px;
 }
-.ButtonActualizar {
+.button-pagar {
   color: white;
   margin: 5px;
   background-color: #0040ff;
@@ -105,12 +105,24 @@
   width: 100px;
   border-radius: 3px;
 }
-.buttonCancel {
+.button-detailspay{
+  color: white;
+  margin: 4px;  
   background-color: #0040ff;
   border: none;
   color: #fff;
   cursor: pointer;
-  margin: 0 20px;
+  height: 40px;
+  width: 150px;
+  border-radius: 3px;
+
+}
+.button-cancel {
+  background-color: #0040ff;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin: 0 10px;
   height: 40px;
   width: 100px;
   border-radius: 3px;

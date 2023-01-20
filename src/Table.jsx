@@ -1,18 +1,18 @@
-import { Trash, Pencil, PersonPlus } from "react-bootstrap-icons";
+import { Trash, PersonPlus, CashCoin } from "react-bootstrap-icons";
 import userpng from "./Img/user.png";
 
-function Table(Props) {
+function Table(props) {
   return (
-    <div className="ContainerTable">
-      <div className="ContainerTitle">
-        <h4>Gestion de Usuario</h4>
+    <div className="container-table">
+      <div className="container-title">
+        <h4>Gestion de Cliente</h4>
         <button
           onClick={() => {
-            Props.newUser();
+            props.newUser();
           }}
-          className="ButtonTitle"
+          className="button-title"
         >
-          <PersonPlus className="IconAgg" />
+          <PersonPlus className="icon-add" />
           Agregar
         </button>
       </div>
@@ -20,41 +20,47 @@ function Table(Props) {
       <table>
         <thead>
           <tr>
-            <th className="Colum-Default">Id</th>
-            <th className="Colum-Default">Estado</th>
-            <th className="Colum-Usuario">Usuario</th>
-            <th className="Colum-Email">E-mail</th>
-            <th className="Colum-Default">Tipo</th>
-            <th className="Colum-Default">Opciones</th>
+            <th className="colum-id">Id</th>
+            <th className="colum-name">Nombre del cliente</th>
+            <th className="colum-default">Telefono</th>
+            <th className="colum-email">E-mail</th>
+            <th className="colum-debt">Deuda</th>
+            <th className="colum-debt">Saldo</th>
+            <th className="colum-debt">Pagos Realizados</th>
+            <th className="colum-default">Opciones</th>
           </tr>
         </thead>
-        <tbody className="Informatiotable">
-          {Props.Usuarios.map((Usuario) => {
+        <tbody className="informatio-table">
+          {props.customers.map((customer) => {
             return (
-              <tr key={Usuario.id}>
-                
-                <td className="Colum-Default">{Usuario.id}</td>
-                <td className="Colum-Default">{Usuario.Estado}</td>
-                <td className="Colum-Usuario"> 
-                <img className="LogoUser" src={userpng} /> {Usuario.Usuario}</td>
-                <td className="Colum-Email">{Usuario.Email}</td>
-                <td className="Colum-Default">{Usuario.Tipo}</td>
-                <td className="Colum-Default">
+              <tr key={customer.id}>
+                <td className="colum-id">{customer.id}</td>
+                <td className="colum-name">
+                  
+                  <img className="LogoUser" src={userpng} />
+                  {customer.name}
+                </td>
+                <td className="colum-default">{customer.phone}</td>
+                <td className="colum-email">{customer.email}</td>
+                <td className="colum-debt">{customer.debt}</td>
+                <td className="colum-balance">{customer.balance}</td>
+                <td className="colum-balance">{customer.payments?.length}</td>
+                <td className="colum-default">
                   <button
                     onClick={() => {
-                      Props.editRow(Usuario);
+                      props.editRow(customer);
                     }}
-                    className="buttonEdit"
+                    className="button-pay"
                   >
-                    <Pencil className="IconEdit" />
+                    <CashCoin className="icon-pay" />
                   </button>
                   <button
                     onClick={() => {
-                      Props.DeleteUser(Usuario.id);
+                      props.DeleteUser(customer.id);
                     }}
-                    className="buttonDelete"
+                    className="button-delete"
                   >
-                    <Trash className="IconDelete" />
+                    <Trash className="icon-delete" />
                   </button>
                 </td>
               </tr>
