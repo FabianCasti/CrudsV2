@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 
-const EditUser = (props) => {
-  const [customer] = useState(props.currentUser);
+
+const DebtRepayment  = (props) => {
+  const [customer] = useState(props.currentDebt);
   const [pay, setPay] = useState(0);
+
+
   const handlePay = (event) => {
     const payFloat = parseFloat(pay);
     if (payFloat > customer.balance) {
@@ -14,9 +17,9 @@ const EditUser = (props) => {
     event.preventDefault();
   };
 
-  const getpayment = (list) => {
+  const getpayment = (payments) => {        
     let result = "";
-    list.map(
+    payments.map(
       (item) =>
         (result =
           result + "Pago:" + "\r" + "$" + item.value + "\r" + item.date + "\n")
@@ -34,19 +37,19 @@ const EditUser = (props) => {
   };
 
   return (
-    <form className="container-form">
+    <form className="contaideleter-form">
       <div>
-        <label> {customer.name}</label>
+        <label className="label-default-debtRepayment"> {customer.name}</label>
       </div>
 
       <div>
-        <label> {customer.phone}</label>
+        <label className="label-default-debtRepayment"> {customer.phone}</label>
       </div>
       <div>
-        <label> {customer.email}</label>
+        <label className="label-default-debtRepayment"> {customer.email}</label>
       </div>
       <div>
-        <label> Saldo: ${customer.balance}</label>
+        <label className="label-default-debtRepayment"> Saldo: ${customer.balance}</label>
       </div>
 
       <div className="form-group">
@@ -67,7 +70,7 @@ const EditUser = (props) => {
           Pagar
         </button>
 
-        <button onClick={() => props.CancelUser()} className="button-cancel">
+        <button  className="button-cancel" onClick={() => props.CancelDebt()}>
           Cancelar
         </button>
 
@@ -84,4 +87,4 @@ const EditUser = (props) => {
   );
 };
 
-export default EditUser;
+export default DebtRepayment;

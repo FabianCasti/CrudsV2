@@ -5,10 +5,10 @@ function Table(props) {
   return (
     <div className="container-table">
       <div className="container-title">
-        <h4>Gestion de Cliente</h4>
+        <h4>Gestion de Deudas</h4>
         <button
           onClick={() => {
-            props.newUser();
+            props.newDebt();
           }}
           className="button-title"
         >
@@ -56,7 +56,7 @@ function Table(props) {
                   </button>
                   <button
                     onClick={() => {
-                      props.DeleteUser(customer.id);
+                      props.deleteDebt(customer.id);
                     }}
                     className="button-delete"
                   >

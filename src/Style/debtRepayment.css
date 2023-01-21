@@ -29,6 +29,11 @@
   gap: 2rem;
 }
 
+.label-default-debtRepayment{
+  margin: 5%;
+  display: block;
+}
+
 .form-group {
   position: relative;
   --color: #5757577e;
@@ -82,7 +87,7 @@
 
 .actions {
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .button-add {

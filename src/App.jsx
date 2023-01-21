@@ -1,9 +1,10 @@
 import "./Style/Table.css";
-import "./Style/Edit.css";
+import "./Style/debtRepayment.css";
 import Table from "./Table";
 import { useState } from "react";
-import RegisterForm from "./RegisterForm";
-import EditUser from "./EditUser";
+import  DebtRegistrationForm from "./DebtRegistrationForm";
+import DebtRepayment from "./debtRepayment";
+
 const initialFormState = {
   id: "",
   Estado: "",
@@ -13,26 +14,26 @@ const initialFormState = {
 };
 
 function App() {
-  const [usuarios, setUsuarios] = useState([]);
+  const [debts, setDebts] = useState([]);
   const [pag, setPag] = useState(1);
   const [usuariosPag, setUsuariosPag] = useState([]);
-  const [editing, setEditing] = useState(false);
+  const [customerPayment, setCustomerPayment] = useState(false);
   const [showTable, setshowTable] = useState(true);
-  const [currentUser, setCurrentUser] = useState(initialFormState);
+  const [currentDebt, setCurrentDebt] = useState(initialFormState);
 
-  const editRow = (Usuario) => {
-    setEditing(true);
+  const editRow = (debt) => {
+    setCustomerPayment(true);
     setshowTable(false);
 
-    setCurrentUser({
-      ...Usuario,
+    setCurrentDebt({
+      ...debt,
     });
   };
 
-  const DeleteUser = (id) => {
-    const UsersResult = usuarios.filter((Usuario) => Usuario.id !== id);
-    setUsuarios(UsersResult);
-    generatePag(UsersResult, pag);
+  const deleteDebt = (id) => {
+    const debtsResult = debts.filter((debt) => debt.id !== id);
+    setDebts(debtsResult);
+    generatePag(debtsResult, pag);
   };
   
   const formatedTimestamp = () => {
@@ -43,7 +44,7 @@ function App() {
   };
 
   const payCustomer = (id, pay) => {
-    const [customerPay] = usuarios.filter((Usuario) => Usuario.id === id);
+    const [customerPay] = debts.filter((debt) => debt.id === id);
 
     if (customerPay) {
       customerPay.balance = customerPay.balance - pay;
@@ -53,56 +54,56 @@ function App() {
         date: formatedTimestamp(),
       });
 
-      const UsersResult = usuarios.map((Usuario) =>
-        Usuario.id === id ? customerPay : Usuario
+      const debtsResult = debts.map((debt) =>
+        debt.id === id ? customerPay : debt
       );
 
-      console.log(UsersResult);
+      console.log(debtsResult);
 
-      setEditing(false);
+      setCustomerPayment(false);
 
-      setUsuarios(UsersResult);
+      setDebts(debtsResult);
 
-      generatePag(UsersResult, pag);
+      generatePag(debtsResult, pag);
 
       setshowTable(true);
     }
   };
 
-  function addCustomer(Usuario) {
-    Usuario.id = usuarios.length + 1;
-    const UsersResult = [...usuarios, Usuario];
-    setUsuarios(UsersResult);
-    generatePag(UsersResult, pag);
+  function addCustomer(debt) {
+    debt.id = debts.length + 1;
+    const debtsResult = [...debts, debt];
+    setDebts(debtsResult);
+    generatePag(debtsResult, pag);
     setshowTable(true);
   }
 
-  function generatePag(Usuarios, Pag) {
+  function generatePag(debt, Pag) {
     const PosicionInicial = (Pag - 1) * 5;
     const PosicionFinal = Pag * 5;
-    const usersPag = Usuarios.slice(PosicionInicial, PosicionFinal);
+    const usersPag = debt.slice(PosicionInicial, PosicionFinal);
     setUsuariosPag(usersPag);
   }
 
   function Nextpag() {
     const Newpag = pag + 1;
     setPag(Newpag);
-    generatePag(usuarios, Newpag);
+    generatePag(debts, Newpag);
   }
 
   function PrevPag() {
     const Prepag = pag - 1;
     setPag(Prepag);
-    generatePag(usuarios, Prepag);
+    generatePag(debts, Prepag);
   }
 
-  function newUser() {
+  function newDebt() {
     setshowTable(false);
-    setEditing(false);
+    setCustomerPayment(false);
   }
 
-  function CancelUser() {
-    setEditing(false);
+  function CancelDebt() {
+    setCustomerPayment(false);
     setshowTable(true);
   }
 
@@ -114,8 +115,8 @@ function App() {
             <Table
               customers={usuariosPag}
               editRow={editRow}
-              DeleteUser={DeleteUser}
-              newUser={newUser}
+              deleteDebt={deleteDebt}
+              newDebt={newDebt}
             />
             <div className="container-table-2">
               <div>
@@ -123,7 +124,7 @@ function App() {
                   <button
                     className="button-delete-users"
                     onClick={() => {
-                      DeleteUser(usuarios.id);
+                      deleteDebt(debts.id);
                     }}
                   >
                     Eliminar{" "}
@@ -150,21 +151,21 @@ function App() {
         ) : (
           <div className="user-form">
             <div className="cuadro-user-form">
-              {editing ? (
+              {customerPayment ? (
                 <div>
-                  <h2>Pago del cliente</h2>
-                  <EditUser
-                    CancelUser={CancelUser}
-                    currentUser={currentUser}
+                  <h2>Pago de la deuda</h2>
+                  <DebtRepayment
+                    CancelDebt={CancelDebt}
+                    currentDebt={currentDebt}
                     payCustomer={payCustomer}
                   />
                 </div>
               ) : (
                 <div>
-                  <h2>Agregar Cliente</h2>
-                  <RegisterForm
+                  <h2>Agregar deuda</h2>
+                  < DebtRegistrationForm
                     addCustomer={addCustomer}
-                    CancelUser={CancelUser}
+                    CancelDebt={CancelDebt}
                   />
                 </div>
               )}

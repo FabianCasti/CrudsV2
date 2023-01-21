@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const RegisterForm = (props) => {
+const  DebtRegistrationForm = (props) => {
   const initialFormState = {
     id: "",
     name: "",
@@ -90,7 +90,7 @@ const RegisterForm = (props) => {
           Agregar
         </button>
 
-        <button onClick={() => props.CancelUser()} className="button-cancel">
+        <button onClick={() => props.CancelDebt()} className="button-cancel">
           Cancelar
         </button>
       </div>
@@ -98,4 +98,4 @@ const RegisterForm = (props) => {
   );
 };
 
-export default RegisterForm;
+export default  DebtRegistrationForm;
